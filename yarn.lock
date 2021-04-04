@@ -1205,6 +1205,11 @@ domexception@^2.0.1:
   dependencies:
     webidl-conversions "^5.0.0"
 
+dstructures.js@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/dstructures.js/download/dstructures.js-1.0.0.tgz#cc106445c41137f86b7c9d546b034ffb8b653719"
+  integrity sha1-zBBkRcQRN/hrfJ1UawNP+4tlNxk=
+
 ecc-jsbn@~0.1.1:
   version "0.1.2"
   resolved "https://registry.npm.taobao.org/ecc-jsbn/download/ecc-jsbn-0.1.2.tgz#3a83a904e54353287874c564b7549386849a98c9"

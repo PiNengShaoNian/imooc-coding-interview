@@ -11,31 +11,26 @@ export class TreeNode {
   }
 }
 
+const dfs = (head: ListNode | null, root: TreeNode | null): boolean => {
+  if (head === null) return true
+  if (root === null) return false
+
+  if (head.val === root.val) {
+    return dfs(head.next, root.left) || dfs(head.next, root.right)
+  } else {
+    return false
+  }
+}
+
 export function isSubPath(
   head: ListNode | null,
   root: TreeNode | null
 ): boolean {
-  const memo: Map<TreeNode, boolean> = new Map()
-  const core = (head: ListNode | null, root: TreeNode | null): boolean => {
-    if (head === null && root === null) return true
-    if (head === null || root === null) return false
+  if (root === null) return false
 
-    if (memo.has(root)) return memo.get(root)!
-
-    let ans = false
-    if (head.val === root.val) {
-      ans =
-        isSubPath(head.next, root.left) ||
-        isSubPath(head.next, root.right) ||
-        isSubPath(head, root.left) ||
-        isSubPath(head, root.right)
-    } else {
-      ans = isSubPath(head, root.left) || isSubPath(head, root.right)
-    }
-
-    memo.set(root, ans)
-    return ans
-  }
-
-  return core(head, root)
+  return (
+    dfs(head, root) ||
+    isSubPath(head, root?.left ?? null) ||
+    isSubPath(head, root?.right ?? null)
+  )
 }
