@@ -5,6 +5,12 @@ export class ListNode {
     this.val = val === undefined ? 0 : val
     this.next = next === undefined ? null : next
   }
+
+  *[Symbol.iterator]() {
+    for (let n: ListNode | null = this; n; n = n.next) {
+      yield n.val
+    }
+  }
 }
 
 export const buildLinkedList = (arr: number[]): ListNode => {
