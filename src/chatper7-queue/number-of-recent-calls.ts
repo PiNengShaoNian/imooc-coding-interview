@@ -1,5 +1,3 @@
-import { TreeNode } from '../chapter5-linked-list/linked-list-in-binary-tree'
-
 class LoopQueue<E> {
   private data: E[] = []
 
@@ -60,34 +58,20 @@ class LoopQueue<E> {
   }
 }
 
-type NodeWithLevel = [TreeNode, number]
+export class RecentCounter {
+  private data: LoopQueue<number> = new LoopQueue()
 
-export function levelOrder(root: TreeNode | null): number[][] {
-  let result: number[][] = []
+  constructor() {}
 
-  if (!root) return result
+  ping(t: number): number {
+    this.data.enqueue(t)
 
-  const queue = new LoopQueue<NodeWithLevel>()
+    for (
+      ;
+      this.data.size() && this.data.front()! < t - 3000;
+      this.data.dequeue()
+    );
 
-  queue.enqueue([root, 0])
-
-  while (queue.size()) {
-    const [node, level] = queue.dequeue()!
-
-    if (level === result.length) {
-      result[level] = []
-    }
-
-    result[level].push(node.val)
-
-    if (node.left) {
-      queue.enqueue([node.left, level + 1])
-    }
-
-    if (node.right) {
-      queue.enqueue([node.right, level + 1])
-    }
+    return this.data.size()
   }
-
-  return result
 }
