@@ -15,10 +15,8 @@ export function smallestDistancePair(nums: number[], k: number): number {
     while (l < nums.length && count < k) {
       if (r + 1 >= nums.length) break
 
-      if (nums[++r] - nums[l] > mid) {
-        ++l
-        continue
-      }
+      ++r
+      while (nums[r] - nums[l] > mid) ++l
 
       count += r - l
     }
