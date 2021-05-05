@@ -91,4 +91,10 @@ export class Deque<E> {
     const last = this.last === 0 ? this.data.length - 1 : this.last - 1
     return this.data[last]
   }
+
+  *[Symbol.iterator]() {
+    for (let i = 0; i < this._size; i++) {
+      yield this.data[(i + this.first) % this.data.length]
+    }
+  }
 }
