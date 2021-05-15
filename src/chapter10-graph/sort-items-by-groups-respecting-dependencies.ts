@@ -31,9 +31,9 @@ export const sortItems = (
   ): number[] => {
     const queue = new Queue<number>()
     const ans: number[] = []
-    for (let i = 0; i < all.length; ++i) {
-      if (indegress[i] === 0) {
-        queue.enqueue(i)
+    for (const x of all) {
+      if (indegress[x] === 0) {
+        queue.enqueue(x)
       }
     }
 
